@@ -24,7 +24,11 @@ const MonthView = () => {
 	}
 
 	const eventsForDay = (day: Dayjs) =>
-		events.filter(e => dayjs(e.startDate).isSame(day, 'day'))
+		events.filter(e => {
+			const start = dayjs(e.startDate)
+			const end = dayjs(e.endDate)
+			return day.isBetween(start, end, 'day', '[]') // [] включает границы
+		})
 
 	return (
 		<>

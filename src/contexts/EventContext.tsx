@@ -3,11 +3,13 @@ import type { ReactNode } from 'react'
 import type { IEvent, ViewMode } from '../types'
 import { type Dayjs } from 'dayjs'
 import isoWeek from 'dayjs/plugin/isoWeek'
+import isBetween from 'dayjs/plugin/isBetween'
 import 'dayjs/locale/ru'
 
 import dayjs from 'dayjs'
 import useLocalStorage from 'use-local-storage'
 
+dayjs.extend(isBetween)
 dayjs.extend(isoWeek)
 dayjs.locale('ru')
 

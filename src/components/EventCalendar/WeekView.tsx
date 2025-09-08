@@ -12,11 +12,15 @@ const WeekView = () => {
 	}
 
 	const eventsForHour = (day: Dayjs, hour: number) =>
-		events.filter(
-			e =>
-				dayjs(e.startDate).isSame(day, 'day') &&
-				dayjs(e.startDate).hour() === hour
-		)
+		events.filter(e => {
+			const start = dayjs(e.startDate)
+			const end = dayjs(e.endDate)
+			if (!day.isBetween(start, end, 'day', '[]')) return false
+			return (
+				(start.isSame(day, 'day') ? hour >= start.hour() : true) &&
+				(end.isSame(day, 'day') ? hour < end.hour() : true)
+			)
+		})
 
 	return (
 		<div className='border-b  border-b-gray-300'>
