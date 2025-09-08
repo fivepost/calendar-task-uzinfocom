@@ -67,7 +67,7 @@ const EventModal = () => {
 
 	const onModalClose = () => setEventToEdit(null)
 	return (
-		<div className='fixed top-0 left-0 w-full h-screen bg-black/30 backdrop-blur-sm flex justify-center items-center'>
+		<div className='fixed top-0 left-0 w-full h-screen bg-black/30 backdrop-blur-sm flex justify-center items-center z-20'>
 			<div className='p-6 w-[500px] bg-white rounded shadow space-y-2 relative'>
 				<h2 className='mb-2 font-medium text-xl'>
 					{isEdit ? 'Измнить' : 'Добавить'} событие

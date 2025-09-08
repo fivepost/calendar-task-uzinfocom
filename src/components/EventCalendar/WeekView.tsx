@@ -23,8 +23,8 @@ const WeekView = () => {
 		})
 
 	return (
-		<div className='border-b  border-b-gray-300'>
-			<div className='border border-gray-300 border-b-0 grid grid-cols-8 mt-4'>
+		<div className='border-b border-b-gray-300 h-[calc(100vh-160px)] overflow-y-auto'>
+			<div className='grid grid-cols-8 border border-gray-300 border-b-0 sticky top-0 bg-white z-5'>
 				<div className='bg-gray-50 text-center p-2 border-r border-r-gray-300 last:border-r-0'>
 					Время
 				</div>
@@ -34,7 +34,7 @@ const WeekView = () => {
 						<div
 							key={day.format('DD-MM')}
 							className={cn(
-								' text-center p-2 border-r border-r-gray-300 last:border-r-0',
+								'text-center p-2 border-r border-r-gray-300 last:border-r-0',
 								{
 									'bg-blue-100': isSameDay,
 									'bg-gray-50': !isSameDay
@@ -45,11 +45,15 @@ const WeekView = () => {
 						</div>
 					)
 				})}
+			</div>
+
+			<div className='grid grid-cols-8 border border-gray-300'>
 				{Array.from({ length: 24 }, (_, i) => i).map(hour => (
 					<Fragment key={hour}>
-						<div className='border-t border-r border-r-gray-300  border-t-gray-300 [&:nth-child(8n)]:border-r-0  p-2 text-sm text-right pr-3'>
+						<div className='border-t border-r border-r-gray-300 border-t-gray-300 [&:nth-child(8n)]:border-r-0 p-2 text-sm text-right pr-3'>
 							{`${hour.toString().padStart(2, '0')}:00`}
 						</div>
+
 						{getWeekDays().map(day => (
 							<div
 								key={day.format('DD-MM') + hour}
@@ -66,7 +70,7 @@ const WeekView = () => {
 									}
 									setEventToEdit(newEvent)
 								}}
-								className='border-t border-r border-r-gray-300 p-1 hover:bg-blue-100 border-t-gray-300 [&:nth-child(8n)]:border-r-0 h-10 relative cursor-pointer'
+								className='border-t border-r border-r-gray-300 hover:bg-blue-100 border-t-gray-300 [&:nth-child(8n)]:border-r-0 h-10 relative cursor-pointer'
 							>
 								{eventsForHour(day, hour).map(ev => (
 									<div
